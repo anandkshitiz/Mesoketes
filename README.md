@@ -6,6 +6,7 @@
 Input.txt file have test case data. An example of such file is provided in the repository.
 
 <h3> Steps </h3>
+
 * Step - 1: Clone/Download this repository in Eclipse.
 * Step - 2: Right click on "src/com/kshitiz/mesoketes/test/BattleTest.java".
 * Step - 3: Go To Run->Run Configurations and give the argument as full path of the Input.txt file on your machine (e.g.      "D:\Input\Input.txt").
