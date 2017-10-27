@@ -3,7 +3,7 @@
 <h2>How to run this program</h2>
 
 <h3> Prerequisite </h3>
-Input.txt file have test case data. An example of such file is provided in the repository.
+Input.txt file having the Test Case data. An example of such file is provided in the repository.
 
 <h3> Steps </h3>
 
