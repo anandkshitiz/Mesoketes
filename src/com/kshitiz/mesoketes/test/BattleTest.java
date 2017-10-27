@@ -28,7 +28,7 @@ public class BattleTest {
 				input.append(CurrentLine + Delimiter.DAYS_DELIM);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Unable to read Input Data File");
 		}
 		Battle battle = new Battle();
 		System.out.println("Input Data is ");
