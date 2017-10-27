@@ -27,19 +27,18 @@ public class BattleTest {
 			while ((CurrentLine = inputFileStream.readLine()) != null) {
 				input.append(CurrentLine + Delimiter.DAYS_DELIM);
 			}
+			Battle battle = new Battle();
+			System.out.println("Input Data is ");
+			System.out.println(input.toString());
+			if (battle.initialize(input.toString())) {
+				System.out.println("Total Number Of Successful Atatcks on Maygans Kingdom by Tribe folks  = "
+						+ battle.startTheBattle());
+			}else {
+				System.out.println("Try again with a valid Input Test Case data.");
+			}
 		} catch (IOException e) {
-			System.out.println("Unable to read Input Data File");
-		}
-		Battle battle = new Battle();
-		System.out.println("Input Data is ");
-		System.out.println(input.toString());
-		if (battle.initialize(input.toString())) {
-			System.out.println("Total Number Of Successful Atatcks on Maygans Kingdom by Tribe folks  = "
-					+ battle.startTheBattle());
-		}else {
-			System.out.println("Try again with a valid Input Test Case data.");
-		}
-
+			System.out.println("Unable to read/process the Input Data File.");
+		}		
 	}
 
 }
