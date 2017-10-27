@@ -84,6 +84,7 @@ public class Battle {
 					}
 					}
 				}
+				// Walls are repaired only during the end of a Day.
 				kingdom.getNorth().repairTheWall();
 				kingdom.getSouth().repairTheWall();
 				kingdom.getEast().repairTheWall();

@@ -20,6 +20,11 @@ public class Wall {
 	private int height = 0;
 	private WallDirection direction;
 	private int nbSuccessBreach = 0;
+	
+	/*
+	 * After every attack "minHeightToOvercomeSimilarAttacks" is calculated using attackTheWall method.
+	 * But, the actual height changes only when "repairTheWall" method is called at the end of Day.
+	 */
 	private int minHeightToOvercomeSimilarAttacks = 0;
 	
 	/**
