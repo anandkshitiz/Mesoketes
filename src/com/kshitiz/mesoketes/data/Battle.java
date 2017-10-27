@@ -12,49 +12,67 @@ import java.util.ArrayList;
  *
  */
 public class Battle {
-	
+
 	private List<Day> days;
 
 	/**
 	 * @param input
 	 */
-	public void initialize(String input) {
-
-		String[] inputAsArray = input.split("\\r\\n");
-		Attack attack = null;
-		Day day = null;
-		days = new ArrayList<Day>();
-		for (String s : inputAsArray) {
-			String[] eachAttackInDayAsArray = s.split(":");
-			List<Attack> attacks = new ArrayList<Attack>();
-			for (String at : eachAttackInDayAsArray) {
-				WallDirection dir = null;
-				String[] a = at.trim().split("-");
-				switch (a[1].trim()) {
-				case "N": {
-					dir = WallDirection.N;
-					break;
+	public boolean initialize(String input) {
+		try {
+			String[] inputAsArray = input.split(Delimiter.DAYS_DELIM);
+			if (inputAsArray.length > 0) {
+				Attack attack = null;
+				Day day = null;
+				days = new ArrayList<Day>();
+				for (String s : inputAsArray) {
+					String[] eachAttackInDayAsArray = s.split(Delimiter.ATTACKS_DELIM);
+					if (eachAttackInDayAsArray.length > 0) {
+						List<Attack> attacks = new ArrayList<Attack>();
+						for (String at : eachAttackInDayAsArray) {
+							WallDirection dir = null;
+							String[] a = at.trim().split(Delimiter.ATTACK_DELIM);
+							if (a.length > 0) {
+								switch (a[1].trim()) {
+								case "N": {
+									dir = WallDirection.N;
+									break;
+								}
+								case "E": {
+									dir = WallDirection.E;
+									break;
+								}
+								case "W": {
+									dir = WallDirection.W;
+									break;
+								}
+								case "S": {
+									dir = WallDirection.S;
+									break;
+								}
+								}
+								attack = new Attack(dir, Integer.parseInt(a[2].trim()));
+								attacks.add(attack);
+							} else {
+								System.out.println("Invalid Input Data..Please use the Test Case data mentioned in the Input.txt file");
+								return false;
+							}
+						}
+						day = new Day(s.substring(0, s.indexOf(Delimiter.DAY_DETAIL_DELIM)), attacks);
+						days.add(day);
+					} else {
+						System.out.println("Invalid Input Data..Please use the Test Case data mentioned in the Input.txt file");
+						return false;
+					}
 				}
-				case "E": {
-					dir = WallDirection.E;
-					break;
-				}
-				case "W": {
-					dir = WallDirection.W;
-					break;
-				}
-				case "S": {
-					dir = WallDirection.S;
-					break;
-				}
-				}
-				attack = new Attack(dir, Integer.parseInt(a[2].trim()));
-				attacks.add(attack);
+				return true;
 			}
-			day = new Day(s.substring(0, s.indexOf(";")), attacks);
-			days.add(day);
+		} catch (ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException e) {
+			System.out.println("Invalid Input Data..Please use the Test Case data mentioned in the Input.txt file");
+			return false;
 		}
-
+		System.out.println("Invalid Input Data..Please use the Test Case data mentioned in the Input.txt file");
+		return false;
 	}
 
 	public int startTheBattle() {
@@ -91,8 +109,8 @@ public class Battle {
 				kingdom.getWest().repairTheWall();
 			}
 		}
-		successfulAtacks = kingdom.getNorth().getNbSuccessBreach() + kingdom.getEast().getNbSuccessBreach() + kingdom.getWest().getNbSuccessBreach()
-				+ kingdom.getSouth().getNbSuccessBreach();
+		successfulAtacks = kingdom.getNorth().getNbSuccessBreach() + kingdom.getEast().getNbSuccessBreach()
+				+ kingdom.getWest().getNbSuccessBreach() + kingdom.getSouth().getNbSuccessBreach();
 		return successfulAtacks;
 	}
 
